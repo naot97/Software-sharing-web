@@ -1,0 +1,103 @@
+<div class="container-fluid">
+    <p-galleria [images]="images" styleClass="completa" panelWidth="500" panelHeight="313" [showFilmstrip]="true"
+    [showCaption]="false"></p-galleria>
+</div>
+<p-dataView #dv [value]="sanphams" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="ten"
+[sortField]="sortField" [sortOrder]="sortOrder">
+<p-header>
+    <div class="ui-helper-clearfix">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-4">
+                <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sắp xếp theo" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+            </div>
+            <div class="ui-g-6 ui-md-4 filter-container">
+                <div style="position:relative">
+                    <input type="search" pInputText placeholder="Tìm theo tên" (keyup)="dv.filter($event.target.value)">
+                </div>
+            </div>
+            <div class="ui-g-6 ui-md-4" style="text-align:right">
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            </div>
+        </div>
+    </div>
+</p-header>
+<ng-template let-sanpham pTemplate="listItem">
+    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+        <div class="ui-g-12 ui-md-2" style="text-align:center">
+            <img src="{{sanpham.image}}" width="100px">
+        </div>
+        <div class="ui-g-12 ui-md-8 sanpham-details">
+            <div class="ui-g">
+                <div class="ui-g-2 ui-sm-6">Tên: </div>
+                <div class="ui-g-10 ui-sm-6"><b>{{sanpham.ten}}</b></div>
+
+                <div class="ui-g-2 ui-sm-6">Số lượt tải: </div>
+                <div class="ui-g-10 ui-sm-6"><b>{{sanpham.soluottai}}</b></div>
+
+                <div class="ui-g-2 ui-sm-6">Mô tả: </div>
+                <div class="ui-g-10 ui-sm-6"><b>{{sanpham.mota}}</b></div>
+
+                <div class="ui-g-2 ui-sm-6">Loại: </div>
+                <div class="ui-g-10 ui-sm-6"><b>{{sanpham.loai}}</b></div>
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-2 search-icon">
+            <div class="ui-g-12"><button pButton type="button" icon="pi pi-search" (click)="selectsanpham($event, sanpham)"></button></div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-12"></div>
+            <div class="ui-g-12"><button pButton style="width:90px" type="button" label="Tải về" (click)="handleClick($event, sanpham)" class="ui-button-success"></button></div>
+        </div>
+    </div>
+</ng-template>
+<ng-template let-sanpham pTemplate="gridItem">
+    <div style="padding:.5em" class="ui-g-12 ui-md-3">
+        <p-panel [header]="sanpham.ten" [style]="{'text-align':'center','vertical-align':'middle','display':'table-cell'}">
+            <img src="{{sanpham.image}}" width="60" style="display: table-cell; vertical-align: middle;">
+            <div class="sanpham-detail">{{sanpham.soluottai}} lượt tải - {{sanpham.ten}}</div>
+            <hr class="ui-widget-content" style="border-top:0">
+            <div class="btn-group">
+                <label class="btn btn-primary" (click)="selectsanpham($event, sanpham)" 
+                       btnCheckbox tabindex="0" role="button"><a class="pi pi-search"></a></label>
+                <label class="btn btn-success" (click)="handleClick($event, sanpham)"
+                       btnCheckbox tabindex="0" role="button">Tải về</label>
+            </div>
+        </p-panel>
+    </div>
+</ng-template>
+</p-dataView>
+
+<p-dialog header="Chi tiết Phần mềm" [(visible)]="displayDialog" [baseZIndex]="10000" [maximizable]="true" [responsive]="true" showEffect="fade" [modal]="true"   (onAfterHide)="onDialogHide()">
+    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9" *ngIf="selectedsanpham">
+        <div class="ui-g-12 ui-md-4" style="text-align:center">
+            <img src="{{selectedsanpham.image}}" width="120px">
+        </div>
+        <div class="ui-g-12 ui-md-8 sanpham-details" >
+            <div class="ui-g">
+                <div class="ui-g-4 ui-sm-6">Tên: </div>
+                <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.ten}}</b></div>
+
+                <div class="ui-g-4 ui-sm-6">Số lượt tải: </div>
+                <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.soluottai}}</b></div>
+
+                <div class="ui-g-4 ui-sm-6">Mô tả: </div>
+                <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.mota}}</b></div>
+
+                <div class="ui-g-4 ui-sm-6">Loại: </div>
+                <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.loai}}</b></div>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+<p-dialog header="Thông báo" [(visible)]="displayDownloadDialog" [modal]="true" [responsive]="true" showEffect="fade" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" 
+                     [baseZIndex]="10000" (onAfterHide)="onDialogHide()" *ngIf="selectedsanpham">
+                        <p style="margin: 30px; text-align: center;">Bạn chắc chắn sẽ tải ứng dụng {{selectedsanpham.ten}} chứ ?</p>
+                        <p-footer>
+                            <a href="{{selectedsanpham.linktai}}" download>
+                                    <button type="button" pButton icon="pi pi-check" (click)="displayDownloadDialog=false; showSuccess();" label="Tải"></button>
+                            </a>
+                            <button type="button" pButton icon="pi pi-close" (click)="displayDownloadDialog=false" label="Không tải" class="ui-button-secondary"></button>
+                        </p-footer>
+</p-dialog>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>

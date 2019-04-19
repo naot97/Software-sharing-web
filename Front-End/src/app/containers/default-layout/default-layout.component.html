@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi"> 
+<head>
+    <meta charset="utf-8">
+</head>
+<app-header
+  [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/logo.png', width: 89, height: 25, alt: 'CoreUI Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/logo.png', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [sidebarToggler]="'lg'">
+  
+  <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+          <a  class=" btn btn-ghost-light dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">
+            <img src="https://res.cloudinary.com/teepublic/image/private/s--LO1tAuQG--/t_Preview/b_rgb:eae0c7,c_limit,f_jpg,h_630,q_90,w_630/v1503610845/production/designs/1848893_1.jpg" class="img-thumbnail rounded-circle" alt="" style="max-width: 40px;margin: -4px 8px 0 0;">Lê Vọng</a>
+            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                <div class="dropdown-header text-center"><strong>Account</strong></div>
+                <a class="dropdown-item" href="/hoso"><i class="fa fa-user"></i> Profile</a>
+                <div class="dropdown-header text-center"><strong>Settings</strong></div>
+                <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
+                <div class="divider"></div>
+                <a class="dropdown-item" [routerLink]="['/login']"><i class="fa fa-lock"></i> Logout</a>
+              </div>
+      </li>
+  </ul>
+</app-header>
+
+<div class="app-body">
+  <app-sidebar [fixed]="true" [display]="'lg'">
+    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+    <app-sidebar-minimizer></app-sidebar-minimizer>
+  </app-sidebar>
+  <!-- Main content -->
+  <main class="main">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb">
+      <app-breadcrumb></app-breadcrumb>
+      <!-- Breadcrumb Menu-->
+    </ol>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div><!-- /.container-fluid -->
+    
+<!-- Footer -->
+<footer class="page-footer font-small stylish-color-dark pt-4">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-4 mx-auto">
+
+        <!-- Content -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Liên hệ</h5>
+        <p>Trường Đại học Bách Khoa Tp.Hồ Chí Minh</p>
+        <p>0123 456 789</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Về chúng tôi</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a [routerLink]="['/labout']">Thông tin</a>
+          </li>
+          <li>
+            <a [routerLink]="['/about']">Sản phẩm</a>
+          </li>
+          <li>
+            <a [routerLink]="['/about']">Đội ngũ</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Hỗ trợ</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a [routerLink]="['/faq']">FAQ</a>
+          </li>
+          <li>
+            <a [routerLink]="['/lienhe']">Liên hệ</a>
+          </li>
+          <li>
+            <a href="#!">Điều khoản</a>
+          </li> 
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <hr>
+
+  <!-- Call to action -->
+  <ul class="list-unstyled list-inline text-center py-2">
+    <li class="list-inline-item">
+      <h5 class="mb-1">Liên hệ với chúng tôi</h5>
+    </li>
+    <li class="list-inline-item">
+      <a [routerLink]="['/lienhe']" mdbBtn color="danger" rounded="true" mdbWavesEffect>Liên hệ ngay !</a>
+    </li>
+  </ul>
+  <!-- Call to action -->
+
+  <hr>
+
+  <!-- Social buttons -->
+  <ul class="list-unstyled list-inline text-center">
+    <li class="list-inline-item">
+      <a class="btn-floating btn-fb mx-1" mdbWavesEffect>
+        <mdb-icon fab icon="facebook"></mdb-icon>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-tw mx-1" mdbWavesEffect>
+        <mdb-icon fab icon="twitter"></mdb-icon>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-gplus mx-1" mdbWavesEffect>
+        <mdb-icon fab fab icon="google-plus"></mdb-icon>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-li mx-1" mdbWavesEffect>
+        <mdb-icon fab icon="linkedin"></mdb-icon>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-dribbble mx-1" mdbWavesEffect>
+        <mdb-icon fab icon="dribbble"></mdb-icon>
+      </a>
+    </li>
+  </ul>
+  <!-- Social buttons -->
+  <hr>
+  <ul class="list-unstyled list-inline text-center py-2">
+    <li class="list-inline-item">
+
+    </li>
+  </ul>
+  <ul class="list-unstyled list-inline text-center py-1">
+    <li class="list-inline-item">
+
+    </li>
+  </ul>
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href="#"> chiasephanmem.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+  </main>
+</div>
+
+</html>
+
+
+

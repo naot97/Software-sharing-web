@@ -1,5 +1,6 @@
 <?php
-require_once './Model/Crud.php';
+require_once './Model/AccountModel.php';
+//require_once './Model/Crud.php';
 class RegisterController 
 {
 	function __construct()
@@ -7,12 +8,15 @@ class RegisterController
 		
 	}
 
+
 	function sign_up()
 	{
 		$data = json_decode(file_get_contents("php://input"));
-		$sql = "INSERT INTO account(username,email,password) VALUES('{$data->username}','{$data->email}','{$data->password}')";
-		$crud = new Crud();
-		$crud->execute($sql);
+		$data->password = password_hash($data->password, PASSWORD_DEFAULT);
+
+		$model = new AccountModel();
+		$model->insert_account($data);
+
 	}
 }
 ?>

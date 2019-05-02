@@ -10,7 +10,7 @@ class DbConfig{
     public function __construct(){
         if(!isset($this->connection)){
             $this->connection=new mysqli($this->_host,$this->_username,$this->_password,$this->_database);
-            
+            $this->connection->set_charset("utf8");
             if(!$this->connection){
                 echo "Cannot connect to the database Server";
                 exit;

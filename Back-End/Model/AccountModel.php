@@ -10,7 +10,7 @@ class AccountModel
 	}
 
 	function select_acount($username){
-		$sql = "SELECT * FROM account WHERE username = '{$username}'";
+		$sql = "SELECT * FROM account WHERE username = '{$username}' AND isDeleted = 0";
 
 		return (object)$this->crud->getData($sql)[0];
 	}

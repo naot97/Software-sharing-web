@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit{
   	regist(){
         //if (this.signupform.valid) {
   			this.http.post(this.base_link + '?controller=Register&action=sign_up'
-  				,this.signupform.value).map(response => response).toPromise().then(
+  				,this.signupform.value).map(response => response.json()).toPromise().then(
           data => {
             console.log(data)
           },

@@ -1,4 +1,4 @@
-export interface sanpham {
+/*export interface sanpham {
     id:string;
     loai:string
     soluottai:number;
@@ -6,4 +6,13 @@ export interface sanpham {
     ten:string;
     image:string;
     linktai:string;
+}*/
+
+export interface sanpham{
+	softwareId : string;
+	isDeleted : string;
+	name : string;
+	sourceImg : string;
+	descript: string;
+	link : string;
 }

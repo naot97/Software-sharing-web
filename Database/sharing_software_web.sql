@@ -6,7 +6,6 @@
 -- Thời gian đã tạo: Th4 22, 2019 lúc 07:39 PM
 -- Phiên bản máy phục vụ: 10.1.37-MariaDB
 -- Phiên bản PHP: 7.3.1
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -38,7 +37,7 @@ CREATE TABLE `account` (
   `lname` varchar(255) NOT NULL DEFAULT '',
   `sourceAvatar` varchar(1023) NOT NULL DEFAULT '',
   `isDeleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4lat;
 
 --
 -- Đang đổ dữ liệu cho bảng `account`
@@ -60,7 +59,7 @@ CREATE TABLE `comment` (
   `softwareId` int(11) NOT NULL,
   `content` varchar(1023) NOT NULL,
   `isDeleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -75,7 +74,10 @@ CREATE TABLE `software` (
   `descript` varchar(1023) NOT NULL DEFAULT '',
   `link` varchar(1023) NOT NULL DEFAULT '',
   `isDeleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `software` (`softwareId`, `name`, `sourceImg`, `descript`, `link`, `isDeleted`) VALUES
+(1, 'Visual studio 2012', 'http://www.iconarchive.com/download/i98390/dakirby309/simply-styled/Microsoft-Visual-Studio.ico', 'IDE l?p trình c?a Microsoft', '', 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ

@@ -15,6 +15,7 @@ import {sanpham} from '../models/sanpham.class';
 import {SelectItem} from 'primeng/api';
 import {Message} from 'primeng/components/common/api';
 import {MessageService} from 'primeng/components/common/messageservice';
+import { Http } from '@angular/http';
 @Component({
   selector: 'app-sanpham',
   templateUrl: './sanpham.component.html',
@@ -77,6 +78,7 @@ export class SanPhamComponent implements OnInit, AfterViewInit {
         return data.json() as sanpham[];
     })).toPromise().then(
       x=>{
+        console.log(x);
         this.sanphams = x;
         this.sanphams.reverse();
         this.loading = false;

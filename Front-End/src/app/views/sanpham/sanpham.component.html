@@ -24,18 +24,18 @@
 <ng-template let-sanpham pTemplate="listItem">
     <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
         <div class="ui-g-12 ui-md-2" style="text-align:center">
-            <img src="{{sanpham.image}}" width="100px">
+            <img src="{{sanpham.sourceImg}}" width="100px">
         </div>
         <div class="ui-g-12 ui-md-8 sanpham-details">
             <div class="ui-g">
                 <div class="ui-g-2 ui-sm-6">Tên: </div>
-                <div class="ui-g-10 ui-sm-6"><b>{{sanpham.ten}}</b></div>
+                <div class="ui-g-10 ui-sm-6"><b>{{sanpham.name}}</b></div>
 
                 <div class="ui-g-2 ui-sm-6">Số lượt tải: </div>
                 <div class="ui-g-10 ui-sm-6"><b>{{sanpham.soluottai}}</b></div>
 
                 <div class="ui-g-2 ui-sm-6">Mô tả: </div>
-                <div class="ui-g-10 ui-sm-6"><b>{{sanpham.mota}}</b></div>
+                <div class="ui-g-10 ui-sm-6"><b>{{sanpham.descript}}</b></div>
 
                 <div class="ui-g-2 ui-sm-6">Loại: </div>
                 <div class="ui-g-10 ui-sm-6"><b>{{sanpham.loai}}</b></div>
@@ -54,7 +54,7 @@
     <div style="padding:.5em" class="ui-g-12 ui-md-3">
         <p-panel [header]="sanpham.ten" [style]="{'text-align':'center','vertical-align':'middle','display':'table-cell'}">
             <img src="{{sanpham.image}}" width="60" style="display: table-cell; vertical-align: middle;">
-            <div class="sanpham-detail">{{sanpham.soluottai}} lượt tải - {{sanpham.ten}}</div>
+            <div class="sanpham-detail">{{sanpham.soluottai}} lượt tải - {{sanpham.name}}</div>
             <hr class="ui-widget-content" style="border-top:0">
             <div class="btn-group">
                 <label class="btn btn-primary" (click)="selectsanpham($event, sanpham)" 
@@ -70,18 +70,18 @@
 <p-dialog header="Chi tiết Phần mềm" [(visible)]="displayDialog" [baseZIndex]="10000" [maximizable]="true" [responsive]="true" showEffect="fade" [modal]="true"   (onAfterHide)="onDialogHide()">
     <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9" *ngIf="selectedsanpham">
         <div class="ui-g-12 ui-md-4" style="text-align:center">
-            <img src="{{selectedsanpham.image}}" width="120px">
+            <img src="{{selectedsanpham.sourceImg}}" width="120px">
         </div>
         <div class="ui-g-12 ui-md-8 sanpham-details" >
             <div class="ui-g">
                 <div class="ui-g-4 ui-sm-6">Tên: </div>
-                <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.ten}}</b></div>
+                <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.name}}</b></div>
 
                 <div class="ui-g-4 ui-sm-6">Số lượt tải: </div>
                 <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.soluottai}}</b></div>
 
                 <div class="ui-g-4 ui-sm-6">Mô tả: </div>
-                <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.mota}}</b></div>
+                <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.descript}}</b></div>
 
                 <div class="ui-g-4 ui-sm-6">Loại: </div>
                 <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.loai}}</b></div>
@@ -92,7 +92,7 @@
 
 <p-dialog header="Thông báo" [(visible)]="displayDownloadDialog" [modal]="true" [responsive]="true" showEffect="fade" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" 
                      [baseZIndex]="10000" (onAfterHide)="onDialogHide()" *ngIf="selectedsanpham">
-                        <p style="margin: 30px; text-align: center;">Bạn chắc chắn sẽ tải ứng dụng {{selectedsanpham.ten}} chứ ?</p>
+                        <p style="margin: 30px; text-align: center;">Bạn chắc chắn sẽ tải ứng dụng {{selectedsanpham.name}} chứ ?</p>
                         <p-footer>
                             <a href="{{selectedsanpham.linktai}}" download>
                                     <button type="button" pButton icon="pi pi-check" (click)="displayDownloadDialog=false; showSuccess();" label="Tải"></button>

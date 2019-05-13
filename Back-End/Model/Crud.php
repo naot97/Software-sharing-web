@@ -1,5 +1,4 @@
 <?php
-
 include_once 'DbConfig.php';
 
 class Crud extends DbConfig{
@@ -10,10 +9,11 @@ class Crud extends DbConfig{
     public function getData($query){
         $result=$this->connection->query($query);
         if($result==false){
-            echo $this->connection->error;
+            //$this->error = $this->connection->error;
+            //throw new Exception($this->connection->error);
+
             return false;
         }
-        
         $rows=array();
         while($row=$result->fetch_assoc()){
             $rows[]=$row;
@@ -22,9 +22,9 @@ class Crud extends DbConfig{
     }
     
     public function execute($query){
-        $result=$this->connection->query($query);
+       $result=$this->connection->query($query);
         if($result==false){
-            echo $this->connection->error;
+            //$this->error = $this->connection->error;
             return false;
         }else{
             return true;

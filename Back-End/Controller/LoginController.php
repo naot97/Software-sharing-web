@@ -10,26 +10,35 @@ class LoginController
 
 	function login()
 	{
+
 		try{
+			$response = new stdClass();
+
 			$data = json_decode(file_get_contents("php://input"));
 			
 			$model = new AccountModel();
-
 			$account = $model->select_acount($data->username);
-			
-			$mess;
+			if (!isset($account->password)) {
+				throw new Exception("Username sai");
+			}
+
 			if (password_verify($data->password, $account->password) ){
-				$mess = 1;
+				
 			}
 			else{
-				$mess = 0;
+				throw new Exception("Mật khẩu sai");
+				
 			}
+
+			$response->success = 1;
+			$response->mess = $account;
 		}
 		catch(Exception $e){
-			$mess = 0;
+			$response->success = 0;
+			$response->mess = $e->getMessage();
 		}
 
-		echo $mess;
+		echo json_encode($response,JSON_UNESCAPED_UNICODE);
 	}
 }
 ?>

@@ -2,7 +2,7 @@
     <p-galleria [images]="images" styleClass="completa" panelWidth="500" panelHeight="313" [showFilmstrip]="true"
     [showCaption]="false"></p-galleria>
 </div>
-<p-dataView #dv [value]="sanphams" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="ten"
+<p-dataView #dv [value]="sanphams" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="name"
 [sortField]="sortField" [sortOrder]="sortOrder">
 <p-header>
     <div class="ui-helper-clearfix">
@@ -32,7 +32,7 @@
                 <div class="ui-g-10 ui-sm-6"><b>{{sanpham.name}}</b></div>
 
                 <div class="ui-g-2 ui-sm-6">Số lượt tải: </div>
-                <div class="ui-g-10 ui-sm-6"><b>{{sanpham.soluottai}}</b></div>
+                <div class="ui-g-10 ui-sm-6"><b>{{sanpham.downloads}}</b></div>
 
                 <div class="ui-g-2 ui-sm-6">Mô tả: </div>
                 <div class="ui-g-10 ui-sm-6"><b>{{sanpham.descript}}</b></div>
@@ -53,8 +53,8 @@
 <ng-template let-sanpham pTemplate="gridItem">
     <div style="padding:.5em" class="ui-g-12 ui-md-3">
         <p-panel [header]="sanpham.ten" [style]="{'text-align':'center','vertical-align':'middle','display':'table-cell'}">
-            <img src="{{sanpham.image}}" width="60" style="display: table-cell; vertical-align: middle;">
-            <div class="sanpham-detail">{{sanpham.soluottai}} lượt tải - {{sanpham.name}}</div>
+            <img src="{{sanpham.sourceImg}}" width="60" style="display: table-cell; vertical-align: middle;">
+            <div class="sanpham-detail">{{sanpham.downloads}} lượt tải - {{sanpham.name}}</div>
             <hr class="ui-widget-content" style="border-top:0">
             <div class="btn-group">
                 <label class="btn btn-primary" (click)="selectsanpham($event, sanpham)" 
@@ -78,7 +78,7 @@
                 <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.name}}</b></div>
 
                 <div class="ui-g-4 ui-sm-6">Số lượt tải: </div>
-                <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.soluottai}}</b></div>
+                <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.downloads}}</b></div>
 
                 <div class="ui-g-4 ui-sm-6">Mô tả: </div>
                 <div class="ui-g-8 ui-sm-6"><b>{{selectedsanpham.descript}}</b></div>
@@ -94,7 +94,7 @@
                      [baseZIndex]="10000" (onAfterHide)="onDialogHide()" *ngIf="selectedsanpham">
                         <p style="margin: 30px; text-align: center;">Bạn chắc chắn sẽ tải ứng dụng {{selectedsanpham.name}} chứ ?</p>
                         <p-footer>
-                            <a href="{{selectedsanpham.linktai}}" download>
+                            <a href="{{selectedsanpham.link}}" download>
                                     <button type="button" pButton icon="pi pi-check" (click)="displayDownloadDialog=false; showSuccess();" label="Tải"></button>
                             </a>
                             <button type="button" pButton icon="pi pi-close" (click)="displayDownloadDialog=false" label="Không tải" class="ui-button-secondary"></button>

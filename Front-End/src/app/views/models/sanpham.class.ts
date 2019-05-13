@@ -15,4 +15,5 @@ export interface sanpham{
 	sourceImg : string;
 	descript: string;
 	link : string;
+	downloads : number;
 }

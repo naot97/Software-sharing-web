@@ -2,6 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 header("content-type: text/html; charset=UTF-8"); 
+//error_reporting(0);
 
 
 

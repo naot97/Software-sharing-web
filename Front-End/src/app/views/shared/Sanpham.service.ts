@@ -17,6 +17,7 @@ export class SanPhamService {
   }
 
   putsanphams(sp: sanpham){
+    //let header =
     return this.http.put(`${this.API_URL}/${sp.id}`, sp);
   }
 }

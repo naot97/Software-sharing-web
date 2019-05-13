@@ -45,9 +45,9 @@ export class SanPhamComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.loadData();
     this.sortOptions = [
-      {label: 'Tải nhiều nhất', value: '!soluottai'},
-      {label: 'Tải ít nhất', value: 'soluottai'},
-      {label: 'Tên', value: 'ten'}
+      {label: 'Tải nhiều nhất', value: '!downloads'},
+      {label: 'Tải ít nhất', value: 'downloads'},
+      {label: 'Tên', value: 'name'}
   ];
   this.images = [];
   this.images.push({source:'https://img.atpsoftware.vn/2017/03/quang-cao-zalo23.jpeg', alt:'Description for Image 1', title:'Title 1'});
@@ -105,16 +105,16 @@ export class SanPhamComponent implements OnInit, AfterViewInit {
   }
     
   showSuccess() {
-    this.selectedsanpham.soluottai++;
+    this.selectedsanpham.downloads++;
     this.service.putsanphams(this.selectedsanpham).subscribe(()=>{
-      this.messageService.add({severity:'success', summary: 'Tải thành công', detail:'Bạn đã tải ứng dụng ' + this.selectedsanpham.ten});
+      this.messageService.add({severity:'success', summary: 'Tải thành công', detail:'Bạn đã tải ứng dụng ' + this.selectedsanpham.name});
     })
     
 }
 
 onSortChange(event) {
   let value = event.value;
-
+  console.log(event);
   if (value.indexOf('!') === 0) {
       this.sortOrder = -1;
       this.sortField = value.substring(1, value.length);
